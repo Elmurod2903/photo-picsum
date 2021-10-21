@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import uz.elmurod.photospicsum.data.PhotoModel
 
-@Database(entities = [PhotoModel::class], version = 1,exportSchema = false)
+@Database(entities = [PhotoModel::class], version = 1, exportSchema = false)
 abstract class PhotosRoomDatabase : RoomDatabase() {
 
     abstract fun photosDao(): PhotoDao
@@ -14,21 +14,17 @@ abstract class PhotosRoomDatabase : RoomDatabase() {
     companion object {
         private var instance: PhotosRoomDatabase? = null
 
-        fun initDatabase(context: Context) {
+        fun initDatabase(context: Context): PhotosRoomDatabase {
             if (instance == null) {
-                synchronized(PhotosRoomDatabase::class) {
                     instance = Room.databaseBuilder(
                         context.applicationContext,
                         PhotosRoomDatabase::class.java,
-                        "photos.db"
-                    ).build()
-                }
+                        "photo.db"
+                    ).allowMainThreadQueries().build()
+
             }
-
-        }
-
-        fun getDatabase(): PhotosRoomDatabase {
             return instance!!
         }
+
     }
 }

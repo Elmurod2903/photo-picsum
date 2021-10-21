@@ -16,5 +16,5 @@ interface PhotoDao {
     fun insertAll(items: List<PhotoModel>)
 
     @Query("select * from photos")
-    fun getAllPhotos(): List<PhotoModel>
+    fun getAllPhotos(): LiveData<List<PhotoModel>>
 }

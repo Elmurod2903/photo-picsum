@@ -4,10 +4,12 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
+import dagger.hilt.android.AndroidEntryPoint
 import uz.elmurod.photospicsum.ui.MainActivity
 import uz.elmurod.photospicsum.databinding.ActivitySplashBinding
 
 
+@AndroidEntryPoint
 class SplashActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySplashBinding

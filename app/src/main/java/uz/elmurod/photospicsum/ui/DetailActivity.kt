@@ -3,10 +3,12 @@ package uz.elmurod.photospicsum.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.bumptech.glide.Glide
+import dagger.hilt.android.AndroidEntryPoint
 import uz.elmurod.photospicsum.data.PhotoModel
 import uz.elmurod.photospicsum.databinding.ActivityDetailBinding
 import uz.elmurod.photospicsum.util.Constants
 
+@AndroidEntryPoint
 class DetailActivity : AppCompatActivity() {
     lateinit var binding: ActivityDetailBinding
     private var itemPhoto: PhotoModel? = null

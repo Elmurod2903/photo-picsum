@@ -1,5 +1,6 @@
 package uz.elmurod.photospicsum.adapter
 
+import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -24,7 +25,7 @@ class PhotoAdapter() :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoVH {
         val vh = LayoutInflater.from(parent.context).inflate(R.layout.item_photo, parent, false)
-        return PhotoVH(vh)
+        return PhotoVH(vh, parent.context)
     }
 
     override fun onBindViewHolder(holder: PhotoVH, position: Int) {
@@ -36,21 +37,19 @@ class PhotoAdapter() :
         else itemListPhoto?.size!!
     }
 
-    inner class PhotoVH(private val view: View) :
+    inner class PhotoVH(private val view: View, private val context: Context) :
         RecyclerView.ViewHolder(view) {
-        lateinit var lastSelectedPhoto: PhotoModel
 
         private val binding = ItemPhotoBinding.bind(view)
 
         fun bindPhoto(item: PhotoModel) {
-            this.lastSelectedPhoto = item
             view.setOnClickListener {
                 val intent = Intent(it.context, DetailActivity::class.java)
                 intent.putExtra(Constants.DATA, item)
                 it.context.startActivity(intent)
             }
 
-            Glide.with(binding.itemImage).load("${Constants.IMAGE_URL + item.id}/1080/560")
+            Glide.with(context).load("${Constants.IMAGE_URL + item.id}/1080/560")
                 .into(binding.itemImage)
         }
     }
